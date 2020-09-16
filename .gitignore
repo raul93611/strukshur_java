@@ -1,0 +1,8 @@
+# Project exclude paths
+/target/
+/.idea/
+/reports
+!/reports/.gitexclude
+/bin/
+!/bin/.gitexclude
+/src/test/java/tests/BaseTest.java

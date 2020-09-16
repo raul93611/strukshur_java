@@ -1,0 +1,47 @@
+<project name="Smoke test" basedir=".">
+    <!-- ========== Initialize Properties =================================== -->
+    <!-- set global properties for build -->
+    <property name="basedir" value="." />
+    <property name="lib" value="${basedir}/lib" />
+    <property name="src" value="${basedir}/src" />
+    <property name="bin" value="${basedir}/bin" />
+    <property name="report-dir" value="${basedir}/reports" />
+    <property name="testng-report-dir" value="${report-dir}" />
+
+    <!-- ====== Set the classpath ====  -->
+    <path id="classpath">
+        <pathelement location="${bin}" />
+        <pathelement location="${lib}/testng-7.1.0.jar"/>
+        <fileset dir="${lib}">
+            <include name="*.jar" />
+        </fileset>
+
+    </path>
+
+    <!-- Make ${bin} directory -->
+    <target name="makedir">
+        <mkdir dir="${bin}" />
+    </target>
+
+    <!-- Clean ${bin} directory -->
+    <target name="clean">
+        <delete dir="${bin}" />
+        <delete dir="${report-dir}" />
+    </target>
+
+    <!-- Compile the java code from ${src} into ${bin} -->
+    <target name="compile" depends="clean, makedir">
+        <javac srcdir="${src}" classpathref="classpath" includeAntRuntime="No" destdir="${bin}" />
+        <echo> /* Compiled Directory Classes */ </echo>
+    </target>
+
+    <!-- Runs the file and generates Reportng report for TestNG-->
+    <taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="classpath" />
+
+    <target name="testng-chrome-grid" depends="compile">
+        <testng outputdir="${testng-report-dir}" classpathref="classpath" useDefaultListeners="false" listeners="utilities.extent_reports.TestListener">
+            <xmlfileset dir="./src/test/java/suites" includes="smokeTestChromeGrid.xml" />
+            <sysproperty key="org.uncommons.reportng.title" value="My Test Report"/>
+        </testng>
+    </target>
+</project>
