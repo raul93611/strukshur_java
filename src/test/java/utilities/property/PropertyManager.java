@@ -9,18 +9,12 @@ public class PropertyManager {
     private static String email;
     private static String email_password;
     private static String password;
-    private static String email_SAML;
-    private static String password_SAML;
     private static String reg_email;
     private static String reg_password;
     private static String chromeDriverPath;
-    private static String ieDriverPath;
     private static String extentReportsPath;
     private static String testingFiles;
-    private static String macChromeDriverPath;
-    private static String testing_binder;
-    private static String testing_team;
-    private static String grid_url;
+    private static String testing_fullname;
 
     public static PropertyManager getInstance() {
 
@@ -40,18 +34,12 @@ public class PropertyManager {
         email = prop.getProperty("login_email");
         email_password = prop.getProperty("email_password");
         password = prop.getProperty("login_password");
-        email_SAML = prop.getProperty("login_email_SAML");
-        password_SAML = prop.getProperty("login_password_SAML");
         chromeDriverPath = prop.getProperty("chromeDriverPath");
-        ieDriverPath = prop.getProperty("ieDriverPath");
         reg_email = prop.getProperty("reg_email");
         reg_password = prop.getProperty("reg_password");
         extentReportsPath = prop.getProperty("extent_reports");
         testingFiles = prop.getProperty("testing_files");
-        macChromeDriverPath = prop.getProperty("macChromeDriverPath");
-        testing_binder = prop.getProperty("testing_binder");
-        testing_team = prop.getProperty("testing_team");
-        grid_url = prop.getProperty("grid_url");
+        testing_fullname = prop.getProperty("testing_fullname");
 
         return instance;
     }
@@ -64,24 +52,12 @@ public class PropertyManager {
         return chromeDriverPath;
     }
 
-    public String getIEDriverPath () {
-        return ieDriverPath;
-    }
-
     public String getEmail () {
         return email;
     }
 
     public String getPassword () {
         return password;
-    }
-
-    public String getEmailSAML () {
-        return email_SAML;
-    }
-
-    public String getPasswordSAML () {
-        return password_SAML;
     }
 
     public String getRegEmail () {
@@ -100,24 +76,12 @@ public class PropertyManager {
         return testingFiles;
     }
 
-    public String getMacChromeDriverPath () {
-        return macChromeDriverPath;
-    }
-
-    public String getTestingBinder () {
-        return testing_binder;
-    }
-
-    public String getTestingTeam () {
-        return testing_team;
-    }
-
-    public String getGridURL () {
-        return grid_url;
-    }
-
     public String getEmail_password () {
         return email_password;
+    }
+
+    public String getTesting_fullname(){
+        return testing_fullname;
     }
 
 }

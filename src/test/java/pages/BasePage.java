@@ -1,5 +1,8 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -42,6 +45,13 @@ public class BasePage {
         driver.findElement(elementBy).click();
     }
 
+    public void clickJS (By elementBy) {
+        waitVisibility(elementBy);
+        WebElement element = driver.findElement(elementBy);
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].click()", element);
+    }
+
     public void writeText (By elementBy, String text) {
         waitVisibility(elementBy);
         driver.findElement(elementBy).clear();
@@ -79,5 +89,13 @@ public class BasePage {
                 return driver.findElement(elementBy).getCssValue(cssValue).equals(equals);
             }
         });
+    }
+
+    public void moveToElement(By elementBy){
+        waitForElementToBeClickable(elementBy);
+        Actions action = new Actions(driver);
+        WebElement element = driver.findElement(elementBy);
+        action.moveToElement(element).perform();
+        element.click();
     }
 }
